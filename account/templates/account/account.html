@@ -1,0 +1,107 @@
+{% extends 'products/main.html' %}
+{% load static %}
+{% block content %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/account/account.css' %}">
+	<div class="container">
+		<div class="half-screen">
+			<div class="fst-div">
+				<img  class="acc-image" src="{{account.profile_picture.url}}">
+				<button class="modal-btn" id="ch-image" type="submit">Change Image</button>
+			</div>
+			<div class="informations">
+				<div class="username">
+					<p id="user-name">{{account.user.username}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container2">
+	<div class="other-half">
+			<div id="simple-txt">
+				{% if request.user.username == account.user.username %}
+					<p id="p-txt">Your announcements:</p>		
+				{% else %}
+					<p id="p-txt">User announcements:</p>
+				{% endif %}
+			</div>
+			{% if products %}
+			<div class="anunturi">
+				{% for product in products %}
+				<div class="anunt">
+					<div class="del-show">
+						<a href="{% url 'products:product' pr_id=product.id %}"><img id="anunt-img" src="{{product.principal_img.image.url}}"></a>
+						{% if account.id == req_id %}
+						<button id="delete-btn">
+							<i class="fa fa-trash" aria-hidden="true"></i>
+						</button>
+						{% endif %}			
+					</div>	
+					<a id="anunt-title" href="{% url 'products:product' pr_id=product.id %}">{{product.title}}</a>
+					<p id="anunt-country">{{product.localization}}. {{product.date_posted}}</p>
+					<p id="anunt-price">{{product.price}} {{product.money_type}}</p>
+				</div>
+				{% endfor %}
+			</div>
+			{% else %}
+				<div class="empty">
+					<img id="empty-img" src="{% static 'used_images/empty_icon_2.png' %}">
+					<p>You don't have any announcements posted yet!</p>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+	<form method="POST" enctype="multipart/form-data">
+	<div class="modal-bg">
+		<div class="modal">
+			{% csrf_token %}
+				<input type="file" name="image-changing">
+				<button type="submit">Save</button>
+				<span class="modal-close">X</span>
+		</div>
+	</div>
+	</form>
+	{% for product in products %}
+	<div class="modal2-bg">
+		<div class="modal2">
+		<p>Are you sure you want to delete this product?</p>
+		<div class="options">
+					<button id="cancel-btn">Cancel</button>
+					<a href="{% url 'products:product-delete' pr_id=product.id %}">
+						<button id="del-btn">Delete</button>
+					</a>
+			</div>
+			<span class="modal-close2">X</span>
+		</div>
+	</div>
+	{% endfor %}
+				
+
+	<script type="text/javascript">
+		var modalBtn = document.querySelector('.modal-btn');
+		var modalBg = document.querySelector('.modal-bg');
+		var modalClose = document.querySelector('.modal-close')
+		modalBtn.addEventListener('click', function(){
+			modalBg.classList.add('bg-active');
+		});
+		modalClose.addEventListener('click', function(){
+			modalBg.classList.remove('bg-active');
+		});
+		var modalBtn2 = document.querySelectorAll('#delete-btn')
+		var modalBg2 = document.querySelector('.modal2-bg')
+		var modalClose2 = document.querySelector('.modal-close2')
+		var modalCancel = document.querySelector('#cancel-btn')
+		for(i=0; i<modalBtn2.length;i++){
+			modalBtn2[i].addEventListener('click', function (){
+			modalBg2.classList.add('bg-active')
+		});
+		
+		}
+		modalClose2.addEventListener('click', function(){
+			modalBg2.classList.remove('bg-active');
+		});
+		modalCancel.addEventListener('click', function(){
+			modalBg2.classList.remove('bg-active');
+		});
+	</script>
+
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends 'products/main.html' %}
+{% load static %}
+{% block content %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/account/after_register.css' %}">
+	<div class="whole-after">
+		<div class="profile-infos">
+			<div class="text-info">
+				<p id="p-info">Complete Profile Informations</p>
+			</div>
+			<div class="email-and-user">
+				<p class="e-info"><b>Your email:</b> {{profile.user.email}}</p>
+				<p class="u-info">Your username: {{profile.user.username}}</p>
+			</div> 
+			<form method="POST">
+				{% csrf_token %}
+				<div class="last-first-phone">
+					<label for="first_name">Enter your First Name *:</label>
+					<input type="text" id="inputs" name="first_name" required placeholder="First Name..">
+					<label for="last_name">Enter your Last Name: *</label>
+					<input type="text" id="inputs" name="last_name" required placeholder="Last Name..">
+					<label for="phone">Enter your Phone Number: *</label>
+					<input type="text" id="inputs" name="phone_number" required placeholder="Phone..">
+					<button id="save-button" type="submit">Save</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+{% endblock content %}

@@ -1,0 +1,99 @@
+{% extends 'products/main.html' %}
+{% load static %}
+{% block content %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/products/room.css'  %}">
+	<div class="whole-stuff">
+		<div class="room-itself">
+			<div class="room-product">
+				<img src="{{product.principal_img.image.url}}">	
+				<div class="product-details">
+					<p id="f-name">{{product.seller.first_name}}</p>
+					<p id="pr-title">{{product.title}}</p>
+					<a href="{% url 'products:product' pr_id=product.id %}">See announcement</a>	
+				</div>
+				<div id="date-and-id">
+					<p id="ID">ID: {{product.id}}</p>
+					<p id="date">{{product.date_posted|date:"d M, g:i"}}</p>
+				</div>
+				<div>
+					
+				</div>
+			</div>
+			<div class="all-messages">
+				{% for m in mesaje %}
+					{% if m.is_same %}
+						<p class="box2 arrow-right">{{m.mesaj.content}}
+					{% else %}
+						<p class="box arrow-left">{{m.mesaj.content}}</p>
+					{% endif %}
+				{% endfor %}
+			</div>
+			<div class="input">
+				<input type="text" name="message-send" id="message-send-input" 
+				placeholder="Send message..">
+				<button type="submit" id="message-send-submit">
+					<i class="fa fa-paper-plane" aria-hidden="true"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+	{{room_name|json_script:"json-roomname"}}
+	{{user_id|json_script:"json-user_id"}}
+	<script type="text/javascript">
+		function scrollToBottom(){
+			let objDiv = document.querySelector('.all-messages');
+			objDiv.scrollTop = objDiv.scrollHeight;
+		}
+		scrollToBottom()
+		const roomName = JSON.parse(document.getElementById('json-roomname').textContent)
+		const user_id = JSON.parse(document.getElementById('json-user_id').textContent)
+		
+		const chatSocket = new WebSocket(
+			'ws://'
+			+ window.location.host
+			+ '/ws/chat/'
+			+user_id
+			+'/'
+			+roomName
+			+'/'
+			)
+		chatSocket.onmessage = function(e){
+			const data = JSON.parse(e.data)
+			if (data.message){
+				var firstId = data.user_id.toString()
+				var secondId="{{request.user.id}}"
+					if(firstId==secondId){
+						document.querySelector('.all-messages').innerHTML += ('<p class="box2 arrow-right">' +  data.message +'</p>')
+					}
+					else{
+						document.querySelector('.all-messages').innerHTML += ('<p class="box arrow-left">' +  data.message +'</p>')
+					}		
+			}
+			else{
+				alert('This message is empty!')
+			}
+			scrollToBottom()
+		}
+		chatSocket.onclose = function(e){
+			console.log('Socket closed unexpectedly')
+		}
+
+		document.getElementById('message-send-submit').onclick = function (e) {
+			const messageInputDOM = document.querySelector('#message-send-input');
+			const message = messageInputDOM.value;
+			if (message.length!==0) 
+			{
+				chatSocket.send(JSON.stringify({
+				'message' : message, 
+				'user_id' : user_id,
+				'room' : roomName
+				})
+				)
+				messageInputDOM.value = ''
+				}
+			}
+		document.getElementById('message-send-input').focus()
+			
+
+	</script>
+{% endblock content %}

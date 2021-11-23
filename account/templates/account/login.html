@@ -1,0 +1,42 @@
+{% extends 'products/main.html' %}
+{% load static %}
+{% block content %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/account/login.css' %}">
+	<div class="whole-login">
+		<div class="login-div">
+			<div class="logo-div">
+				<h1 id="logo2">
+					WeSell
+				</h1>
+			</div>
+			<div id="login-txt">
+				<p id="login-text">Login</p>
+			</div>
+			<hr style="width:100%">
+			<form method="POST">
+				{% csrf_token %}
+				<div class="inputs-div">
+					<label for="username">Username</label>
+					<input id="inputt" type="text" name="username" placeholder="Username..">
+					<label for="password">Password</label>
+					<input id="inputt" type="password" name="password" placeholder="Password..">
+					<button id="login-button" type="submit">Login to your account</button>
+				</div>
+			</form>
+			<div class="errorrs">
+				{% if login_form.non_field_errors %}
+						{% for error in login_form.non_field_errors %}
+							<p id="errorr">{{error}}</p>
+						{% endfor %}
+				{% endif %}
+			</div>
+			<div class="no-account-txt">
+				<p id="pp">You don't have an account? <a href="{% url 'account:register' %}">Register</a></p>
+			</div>
+			<div class="no-account-txt" style="margin-bottom: 0.5rem;">
+				<p id="pp">Forgot password? <a href="{% url 'reset_password' %}">Reset Password</a></p>
+			</div>
+		</div>
+	</div>
+{% endblock content %}

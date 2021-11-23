@@ -1,0 +1,50 @@
+{% extends 'products/main.html' %}
+{% load static %}
+{% block content %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/products/messages.css' %}">
+	<style type="text/css">
+		.empty{
+			height: auto;
+			width: 50%;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+		#empty-img{
+			width: 200px;
+			height: 200px;
+		}
+		.empty p{
+			font-weight: bold;
+			font-size: x-large;
+		}
+	</style>
+	<div class="white-part">
+		<p class="simple-text">Messages:</p>
+	</div>
+	<div class="grey-part">
+	{% if chat_dicts %}
+		<div class="antet">
+			<p>Name of the user:</p>
+			<p>Announcement:</p>
+			<p>Date Sent:</p>
+		</div>
+		{% for dict in chat_dicts %}
+		
+		<a href="{% url 'products:room' user_id=request.user.id room_name=dict.room.name %}" class="mesaj">
+				<p>{{dict.user.user.username}}</p>
+				<p>{{dict.product.title}}</p>
+				<p>{{dict.room.date_created|date:"d M, g:i"}}</p>
+		</a>
+		{% endfor %}
+		</div>
+		{% else %}
+			<div class="empty">
+				<img id="empty-img" src="{% static 'used_images/no_messages.png' %}">
+				<p>You don't have any messages</p>
+			</div>
+		{% endif %}
+	
+{% endblock content %}

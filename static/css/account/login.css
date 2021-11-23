@@ -1,0 +1,108 @@
+.whole-login{
+		height: 92vh;
+		background-image: linear-gradient(
+			to bottom right,
+			#4affde 0%, #5b9dff 40%, #d06bff 60%, #ff34d2 100%
+		);
+		background-size: 200% 200%;
+		animation: movingGradient 5s linear infinite alternate;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	@keyframes movingGradient{
+		from{
+			background-position: 0% 0%;
+		}
+		to{
+			background-position: 100% 100%;
+		}
+	}
+	.login-div{
+		width: 450px;
+		height: auto;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+	.logo-div{
+		height: 75px;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #002F34;
+	}
+	#logo2{
+			font-family: 'Stick No Bills', sans-serif;
+			color: #24E5DB;
+			font-size: xx-large;
+			font-weight: bold;
+			text-decoration: none;
+	}
+	#login-txt{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 75px;
+	}
+	#login-text{
+		font-size: x-large;
+		font-weight: bold;
+	}
+	.inputs-div{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+	}
+	label{
+		margin-top: 1rem;
+		align-self: flex-start;
+		font-size: larger;
+	}
+	#inputt{
+		width: 300px;
+		height: 40px;
+		background-color: #f2f2f2;
+		border-radius: 3px;
+		border: none;
+		margin-bottom: 1rem;
+		font-size: large;
+		padding-left: 1rem;
+	}
+	#login-button{
+		width: 320px;
+		height: 40px;
+		font-size: large;
+		font-weight: bold;
+		margin-top: 1rem;
+		background-color: #002F34;
+		color: #fff;
+		border-radius: 3px;
+		margin-bottom: 0.5rem;
+		cursor: pointer;
+		transition: 0.4s ease-in-out;
+	}
+	#login-button:hover{
+		background-color: #00181b;
+	}
+	#pp{
+		font-size: medium;
+		font-weight: bold;
+	}
+	#errorrs{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	#errorr{
+		color: red; 
+		font-size:large;
+		margin-bottom: 1rem;
+		margin-top: 1.5rem;
+		font-weight: bold;
+	}

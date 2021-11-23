@@ -1,0 +1,54 @@
+{% extends 'products/main.html' %}
+{% load static %}
+{% block content %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/products/all_search.css' %}">
+	<div class="products">
+		<div class="start-text">	
+			<h2>Search for "{{main_search}}" in "{{local}}": </h2>
+			<p><b>{{products_len}}</b> announces</p>
+		</div>
+		{% if all_dicts %}
+			{% for dict in all_dicts %}
+				<div class="product">
+					<div class="img-div">
+						<a href="{% url 'products:product' pr_id=dict.product.id %}"><img id="imggg" src="{{dict.product.principal_img.image.url}}"></a>
+					</div>
+					<div class="title-div">
+						<a href="{% url 'products:product' pr_id=dict.product.id%}" id="title">{{dict.product.title}}</a>
+						<p id="localization">{{dict.product.localization}},  {{dict.product.date_posted}}</p>
+					</div>
+					<div class="price-div">
+						<p><b>{{dict.product.price}}</b>  {{dict.product.money_type}}</p>
+						{% if dict.is_fav %}
+							<i class="fa fa-heart favourite" data-action="remove" data-product="{{dict.product.id}}" aria-hidden="true"></i>
+						{% else %}
+							<i data-action="add" data-product="{{dict.product.id}}" class="fa fa-heart-o favourite" aria-hidden="true"></i>
+						{% endif %}
+					</div>
+				</div>	
+			{% endfor %}
+		{% else %}
+			{% for product in products %}
+				<div class="product">
+					<div class="img-div">
+						<a href="{% url 'products:product' pr_id=product.id %}"><img id="imggg" src="{{product.principal_img.image.url}}"></a>
+					</div>
+					<div class="title-div">
+						<a href="{% url 'products:product' pr_id=product.id%}" id="title">{{product.title}}</a>
+						<p id="localization">{{product.localization}},  {{product.date_posted}}</p>
+					</div>
+					<div class="price-div">
+						<p><b>{{product.price}}</b>  {{product.money_type}}</p>
+						
+							<i data-action="add" data-product="{{product.id}}" class="fa fa-heart-o favourite" aria-hidden="true"></i>
+					</div>
+				</div>	
+			{% endfor %}
+		{% endif %}
+		{% if not all_dicts and not products %}
+			<img id="empty" src="{% static 'used_images/no_search.png' %}">
+			<p id="txtt">No search found.. </p>
+		{% endif %}
+	</div>
+	<script src="{% static 'js/favouriteAdd.js' %}"></script>
+{% endblock content %}

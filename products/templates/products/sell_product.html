@@ -1,0 +1,91 @@
+{% extends 'products/main.html' %}
+{% load static %}
+{% block content %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/products/sell_product.css' %}">
+	<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	<div class="whole-page">
+			<h1 id="publish-txt">Publish anything!</h1>
+			<div class="title-and-category">
+				<label>Choose a title: <span style="color: red;">*</span></label>
+				<input type="text" name="title" placeholder="Ex: Iphone 11, still waranty" required>
+				<label>Choose category: <span style="color: red;">*</span></label>
+				<select name="category-choose">
+					{% for option in categories %}
+						<option>{{option}}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="images-div">
+				<input type="file" name="image-upload" id="file-input" multiple onchange="preview()">
+				<label for="file-input">
+					Choose a photo
+					<i class="fa fa-download" aria-hidden="true"></i>
+				</label>
+				<p id="num-of-files">Number of files</p>
+				<div id="images"></div>
+			</div>
+			<div class="description">
+				<label>Add description: <span style="color: red;">*</span></label>
+				<textarea name="description-fill" placeholder="Try to write something that you'd like to see if you'd see this announce.."></textarea>
+			</div>
+			<div class="price">
+				<label>Price: <span style="color: red;">*</span></label>
+				<div class="price-div">
+					<input type="text" name="price" required>
+					<select name="money-type">
+						{% for currency in currencies %}
+							<option>{{currency}}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+			<div class="informations">
+				<h2>Contact informations:</h2>
+				<label>Localization:</label>
+				<select name="coming-from">
+					{% for county in counties %}
+						<option>{{county}}</option>
+					{% endfor %}
+				</select>
+				<label>Email:</label>
+				<input type="text" name="email" value="{{account.user.email}}" disabled>
+				<label>Phone:</label>
+				<input type="text" name="phone" value="{{account.phone_number}}" required>
+			</div>
+			<div class="save-button" style="margin-bottom: 3rem;">
+				<button type="submit" id="post-button">
+					Post
+				</button>
+			</div>
+	</div>
+	</form>
+	<script type="text/javascript">
+		let fileInput = document.getElementById('file-input');
+		let imageContainer = document.getElementById('images');
+		let numOfFiles = document.getElementById('num-of-files');
+		console.log(fileInput, imageContainer, numOfFiles)
+	
+		function preview(){
+			imageContainer.innerHTML = '';
+			numF = fileInput.files.length
+			numOfFiles.textContent =  numF + ' Files Selected';
+
+			for(i of fileInput.files){
+				let reader = new FileReader();
+				let figure = document.createElement("figure");
+				let figCap = document.createElement("figcaption");
+
+				figCap.innerHTML = i.name;
+				figure.appendChild(figCap);
+				reader.onload = () => {
+					let img = document.createElement("img");
+					img.setAttribute("src", reader.result);
+					figure.insertBefore(img, figCap);
+				}
+				imageContainer.appendChild(figure);
+				reader.readAsDataURL(i)
+			}
+		};
+	</script>
+{% endblock content %}

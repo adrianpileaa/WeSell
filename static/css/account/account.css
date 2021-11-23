@@ -1,0 +1,282 @@
+.container{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 2rem;
+			margin-bottom: 2rem;
+		}
+		.container2{
+			margin: 2rem auto;
+			width: 80%;
+		}
+		.half-screen{
+			height: 200px;
+			width: 80%;
+			display: flex;
+			align-items: center;
+			align-items: center;
+			background-color: #fff;
+			border-radius: 4px;
+			box-shadow: 0 0 5px #ccc;
+		}
+		.fst-div{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			margin: 1.5rem 2rem 1.5rem 3rem;
+		}
+		.acc-image{
+			height: 150px;
+			width: 150px;
+			border-radius: 50%;
+			object-fit: cover;
+			border: 3px solid #002F34;
+			transition: opacity 0.4s ease-in-out;
+		}
+		#ch-image{
+			position: absolute;
+			display: none;
+			font-size: large;
+			height: 40px;
+			width: auto;
+			font-weight: bold;
+			background-color: #F2F4F5;
+			color: #002F34;
+			border: 3px solid #002F34;
+			border-radius: 2px;
+			cursor: pointer;
+			transition: 0.4s ease-in-out;
+		}
+		.fst-div:hover .acc-image{
+			opacity: 0.7;
+		}
+		.fst-div:hover #ch-image{
+			display: block;
+			transition-duration: 0.4s;
+		}
+		.informations{
+			width: 100%;
+		}
+		#lab{
+			font-size: large;
+			font-weight: bolder;
+		}
+		#user-name{
+			font-size: xx-large;
+			font-weight: 900;
+		}
+		.other-half{
+			
+			
+		}
+		#simple-txt{
+			width: 150px;
+			height: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			
+		}
+		#p-txt{
+			font-weight: bold;
+			font-size: larger;
+			
+		}
+		.anunturi{
+			height: auto;
+			display: grid;
+			width: 100%;
+			grid-template-columns: repeat(3, auto);
+			grid-gap: 5rem;
+			justify-content: center;
+			align-items: center;
+			margin-top: 2rem;
+		}
+		.empty{
+			height: auto;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+		.anunt{
+			width: 350px;
+			height: auto;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			border-radius: 3px;
+			box-shadow: 0 0 5px #ccc;
+			background-color: #fff;
+			margin: auto;
+		}
+		.del-show{
+			position: relative;
+		}
+		#anunt-img{
+			width: 350px;
+			height: 350px;
+			object-fit:cover;
+			transition: 0.3s ease-in-out;
+		}
+		#delete-btn{
+			display: none;
+			position: absolute;
+			font-weight: bold;
+			top:165px;
+			left: 145px;
+			width: 50px;
+			height: 50px;
+			cursor: pointer;
+			border-radius: 50%;
+			background-color: #4d4d4d;
+			box-shadow: 0 0px 15px #fff;
+			border: none;
+			transition: 0.5s ease-in-out;
+		}
+		#delete-btn i{
+			font-size: 40px;
+			color: #F2F4F5;;
+		}
+		.del-show:hover #delete-btn{
+			display: block;
+		}
+		.del-show:hover #anunt-img{
+			filter: brightness(70%);
+		}
+		
+		#anunt-title{
+			font-size: large;
+			font-weight: bold;
+			align-self: flex-start;
+			margin: 1rem 2rem;
+			text-decoration: none;
+			color: #000;
+		}
+		#anunt-country{
+			color: #A9A9A9;
+			margin: 0 auto 1rem 2rem;
+		}
+		#anunt-price{
+			margin: 0 auto 1rem 2rem;
+			font-weight: bold;
+		}
+		.modal-bg, .modal2-bg{
+			position: fixed;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100vh;
+			background-color: rgba(0, 0, 0, 0.5);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			visibility: hidden;
+			opacity: 0;
+			transition: visibility 0s, opacity 0.5s;
+		}
+		.bg-active{
+			visibility: visible;
+			opacity: 1;
+		}
+		.modal, .modal2{
+			position: relative;
+			background-color: #fff;
+			width: 350px;
+			height: 30%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			border-radius: 4px;
+			overflow: hidden;
+		}
+		.modal2{
+			width: 500px;
+		}
+		.modal2 p{
+			font-size: large;
+			font-weight: bold;
+		}
+		#cancel-btn{
+			width: 100px;
+			height: 35px;
+			border-radius: 3px;
+			border:none;
+			font-size: large;
+			font-weight: bold;
+			margin-right: 1rem;
+			background-color:#002F34;
+			color: #e2e2e2;
+			cursor: pointer;
+		}
+		#cancel-btn:hover{
+			background-color: #194348;
+		}
+		#del-btn{
+			width: 100px;
+			height: 35px;
+			width: 100px;
+			height: 35px;
+			border-radius: 3px;
+			border:none;
+			font-size: large;
+			font-weight: bold;
+			background-color: #ED5E68;
+			color: #FDEEEF;
+			cursor: pointer;
+		}
+		#del-btn:hover{
+			background-color: #D5545D;
+
+		}
+		.modal button{
+			font-size: large;
+			height: 40px;
+			width: 100px;
+			margin-right: 1rem;
+			font-weight: bold;
+			background-color: #fff;
+			color: #002F34;
+			border: 3px solid #002F34;
+			border-radius: 2px;
+			cursor: pointer;
+		}
+		.modal button:hover{
+			color: #fff;
+			background-color: #002F34;
+			transition-duration: 0.4s ease-in-out;
+		}
+		.modal input[type="file"]{
+			margin-left: 4rem;
+			margin-bottom: 3rem;
+		}
+		.modal-close, .modal-close2{
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		#empty-img{
+			width: 200px;
+			height: 200px;
+		}
+		.empty p{
+			font-weight: bold;
+			font-size: x-large;
+		}
+		@media only screen and (max-width: 968px){
+			
+			.anunturi{
+				display: flex;
+				flex-direction: column;
+				margin: 0;
+				margin-top: 2rem;
+				padding: 0;
+				justify-content: center;
+				align-items: center;
+			}
+		}

@@ -1,0 +1,80 @@
+{% extends 'products/main.html' %}
+{% load static %}
+{% block content %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/products/home.css' %}">
+		<form action="{% url 'products:main-search' %}"  method="POST">
+		{% csrf_token %}
+		<div class="search-part">
+			<div class="whole-search">	
+				<div class="left-search">
+					<i class="fa fa-search" aria-hidden="true" style="font-size: 40px;"></i>
+					<input id="main-src" type="text" name="main-search" placeholder="Search..">
+				</div>
+				<div class="center-search">
+					<i class="fa fa-map-marker" aria-hidden="true" style="font-size: 40px;"></i>
+				<div class="options">
+					<select name="selecting" class="selection">
+						{% for county in counties%}
+							<option>{{county}}</option>
+						{% endfor %}
+					</select>
+				</div>
+				</div>
+				<div class="right-search">
+					<button type="submit" id="search-btn">
+						<p id="btn-text">Search</p>
+						<i class="fa fa-search" aria-hidden="true" style="font-size: 40px;"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</form>
+	<div id="cat-text">
+		<p id="category-text">Categories:</p>
+	</div>
+	<div class="categories">
+		{% for category in categories %}
+		<div class="category">
+			<a href="{% url 'products:category-search' category_name=category.name %}"><img id="category-image" src="{{category.picture.url}}"></a>
+			<a href="{% url 'products:category-search' category_name=category.name %}"><p id="text-1">{{category.name}}</p></a>
+		</div>
+		{% endfor %}
+	</div>
+	<div class="an-text">
+			<p id="an-text2">Announcements:</p>
+		</div>
+	<div class="anunturi">
+			{% if all_products %}
+				{% for dict in all_products %}
+				<div class="anunt">
+					<a href="{% url 'products:product' pr_id=dict.product.id %}"><img id="anunt-img" src="{{dict.product.principal_img.image.url}}"></a>
+					<a id="anunt-title" href="{% url 'products:product' pr_id=dict.product.id %}">{{dict.product.title}}</a>
+					<p id="anunt-country">{{dict.product.localization}}. {{dict.product.date_posted|date:"d M, Y"}}</p>
+					<div class="price-and-heart">
+						<p id="anunt-price">{{dict.product.price}} {{dict.product.money_type}}</p>
+						{% if dict.is_fav %}
+							<i class="fa fa-heart favourite" data-action="remove" data-product="{{dict.product.id}}" aria-hidden="true"></i>
+						{% else %}
+							<i data-action="add" data-product="{{dict.product.id}}" class="fa fa-heart-o favourite" aria-hidden="true"></i>
+					{% endif %}	
+					</div>
+					
+				</div>
+				{% endfor %}
+			{% else %}
+				{% for product in products %}
+				<div class="anunt">
+					<a href="{% url 'products:product' pr_id=product.id %}"><img id="anunt-img" src="{{product.principal_img.image.url}}"></a>
+					<a id="anunt-title" href="{% url 'products:product' pr_id=product.id %}">{{product.title}}</a>
+					<p id="anunt-country">{{product.localization}}. {{product.date_posted|date:"d M, Y"}}</p>
+					<div class="price-and-heart">
+						<p id="anunt-price">{{product.price}} {{product.money_type}}</p>
+						<i class="fa fa-heart-o favourite" aria-hidden="true"></i>	
+					</div>
+					
+				</div>
+				{% endfor %}
+			{% endif %}
+	</div>
+	<script src="{% static 'js/favouriteAdd.js' %}"></script>
+{% endblock content %}

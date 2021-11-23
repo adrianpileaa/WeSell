@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta name="viewport" content="width=device-width initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@300;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="shortcut icon" type="image/ico" href="{% static 'used_images/faviconn.ico' %}">
+	<title>
+		WeSell
+	</title>
+	<style>
+		::-webkit-scrollbar {
+			width: 15px;
+		} 
+		
+		::-webkit-scrollbar-thumb{
+			border-radius: 5px;
+			background-color: grey;
+		}
+		html{
+			scroll-behavior: smooth;
+		}
+	</style>
+</head>
+<body>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/products/main.css' %}">
+	<script type="text/javascript">
+		var user = "{{request.user}}"
+		function getToken(name) {
+	    let cookieValue = null;
+	    if (document.cookie && document.cookie !== '') {
+	        const cookies = document.cookie.split(';');
+	        for (let i = 0; i < cookies.length; i++) {
+	            const cookie = cookies[i].trim();
+	            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+	                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+	                break;
+	            }
+	        }
+	    }
+	    return cookieValue;
+		}
+		const csrftoken = getToken('csrftoken');
+	</script>
+	<div class="nav">
+		<div class="left-side">
+			<a id="logo" href="{% url 'products:home' %}">WeSell</a>
+		</div>
+		<div class="right-side">
+			<div class="nav-component">
+				<a class="a-tag"> 
+					{% if request.user.is_authenticated %}
+						<a class="a-tag" href="{% url 'products:messages' %}">
+							<i class="fa fa-commenting-o" aria-hidden="true" style="font-size:20px;"></i>
+							<p class="nav-text">Messages</p>
+						</a>
+					{% else %}
+						<a class="a-tag" href="{% url 'account:login' %}">
+							<i class="fa fa-commenting-o" aria-hidden="true" style="font-size:20px;"></i>
+							<p class="nav-text">Messages</p>
+						</a>
+					{% endif %}
+				</a>
+			</div>
+			<div class="nav-component">
+				{% if request.user.is_authenticated %}
+					<a class="a-tag3" href="{% url 'products:favourites' %}"><i class="fa fa-heart-o" aria-hidden="true" style="font-size:20px"></i></a>
+					<p id="fav-nr">{{fav_number}}</p>
+				{% else %}
+					<a class="a-tag3" href="{% url 'account:login' %}"><i class="fa fa-heart-o" aria-hidden="true" style="font-size:20px"></i></a>
+				{% endif %}
+
+			</div>
+			<div class="nav-component">
+				{% if request.user.is_authenticated %}
+				<div class="dropdown">
+					<a class="a-tag" onclick="dropdownFunction();" style="cursor: pointer;">
+						<i class="fa fa-user-o a-tag" aria-hidden="true" style="font-size:20px"></i>
+						<p class="nav-text a-tag">Account</p>
+					</a>	
+					<div id="myDropdown" class="dropdown-content">
+						<a href="{% url 'account:account' profile_id=request.user.id %}" style="color: #000;">{{request.user.username}} </a>
+						<hr style="width:100%; height: 1px;">
+						<a href="{% url 'account:logout' %}">Logout</a>
+					</div>
+				</div>
+				
+				{% else %}
+				<a class="a-tag" href="{% url 'account:login' %}">
+					<i class="fa fa-user-o" aria-hidden="true" style="font-size:20px"></i>
+					<p class="nav-text">Account</p>
+				</a>
+				{% endif %}
+			</div>
+			<div class="nav-component">
+				{% if request.user.is_authenticated %}
+				<a href="{% url 'products:product-sell' %}" class="nav-button">
+					Sell Anything
+				</a>
+				{% else %}
+				<a href="{% url 'account:login' %}" class="nav-button">
+					Sell Anything
+				</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert {{message.tags}}" id="msg" role='alert'>
+				{{ message }}
+			</div>
+		{% endfor %}
+	{% endif %}
+	{% block content %}
+	{% endblock content %}
+	<script>
+	window.setTimeout("closeHelpDiv();", 3000);
+
+	function closeHelpDiv(){
+		document.getElementById("msg").style.display=" none";
+	}
+
+	function dropdownFunction() {
+			  document.getElementById("myDropdown").classList.toggle("show");
+			}
+
+			window.onclick = function(event) {
+			  if (!event.target.matches('.a-tag')) {
+			    var dropdowns = document.getElementsByClassName("dropdown-content");
+			    var i;
+			    for (i = 0; i < dropdowns.length; i++) {
+			      var openDropdown = dropdowns[i];
+			      if (openDropdown.classList.contains('show')) {
+			        openDropdown.classList.remove('show');
+			      }
+			    }
+			  }
+			}
+	</script>
+</body>
+</html>

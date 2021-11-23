@@ -1,0 +1,162 @@
+{% extends 'products/main.html' %}
+{% load static %}
+{% block content %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/products/product_page.css' %}">
+	<div class="whole-page">
+		<div class="pic-and-description">
+			<div class="product-picture">
+				<div class="images">
+					{% for i in product_images %}
+						<img id="pic-itself" src="{{i.image.url}}">
+					{% endfor %}
+				</div>
+				<div onclick="side_slide(-1)" class="slide left">
+					<i class="fa fa-chevron-left" aria-hidden="true"></i>
+				</div>
+				<div onclick="side_slide(1)" class="slide right">
+					<i class="fa fa-chevron-right" aria-hidden="true"></i>
+				</div>
+			</div>
+			<div class="product-description">
+				<div id="date-posted">
+					<p id="d-posted">Posted on {{product.date_posted}}</p>
+					{% if is_fav %}
+						<i id="favourite" class="fa fa-heart" data-action="remove" data-product="{{product.id}}" aria-hidden="true"></i>
+					{% else %}
+						<i id="favourite" data-action="add" data-product="{{product.id}}" class="fa fa-heart-o" aria-hidden="true"></i>
+					{% endif %}
+				</div>
+				<div>
+					<p id="pr-title">{{product.title}}</p>
+				</div>
+				<div>
+					<p id="pr-price">{{product.price}} {{product.money_type}}</p>
+				</div>
+				<div id="pr-descrpition">
+					<h2 id="description-text">Description:</h2>
+					<p id="description-itself">{{product.description}}</p>
+				</div>
+			</div>
+			<div class="seller-number">
+				<div class="info-1">
+					<div id="div_1">
+						<img id="imgg" src="{{product.seller.profile_picture.url}}">	
+					</div>
+					<div>
+						<p id="seller-name">{{product.seller.user.username}}</p>
+						<p id="seller-date">On WeSell from {{product.seller.date_created}}</p>	
+					</div>
+				</div>
+				<div class="info-2">
+					<p id="hidden-number">
+						07xxxxxxx
+					</p>
+					<p class="hidden-number2">
+						{{product.seller.phone_number}}
+					</p>
+					<button id="message-button2">
+						Show
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="container-helper">
+			<div class="seller-and-localization">
+				<div id="seller">
+					<p id="s-text">Seller:</p>
+					<div class="seller-info">
+						<img id="seller-picture" src="{{product.seller.profile_picture.url}}">
+						<div class="seller-info2">
+							<a href="{% url 'account:account' profile_id=product.seller.id %}" id="seller-name">{{product.seller.user.username}}</a>
+							<p id="seller-date">On WeSell from {{product.seller.date_created}}</p>
+							<a id="seller-more" href="{% url 'account:account' profile_id=product.seller.id %}"><p>See user account</p></a>
+						</div>
+					</div>
+					{% if request.user.is_authenticated %}
+						{% if not is_req %}
+						<div class="seller-buttons">
+								<button onClick="document.getElementById('hidden-number').scrollIntoView();" id="call-button">Call Seller</button>
+								<a href="{% url 'products:room' user_id=request.user.id room_name=room_name %}"><button id="message-button">Message</button></a>
+						</div>
+						{% endif %}
+					{% endif %}
+					<!--
+					<div class="seller-rating">
+						<p id="s-text2">Seller Rating:</p>
+						<p id="s-text2">5</p><i class="fa fa-star-o" aria-hidden="true"></i>
+					</div>
+					-->
+				</div>
+				<div class="localization">
+					<p id="localization-text">Localization</p>
+					<div class="loc-div">
+						<i class="fa fa-map-marker" aria-hidden="true" style="font-size: 40px;"></i>
+						<p id="loc-text">{{product.localization}}</p>
+						<div id="map"></div>
+					</div>	
+					
+					<div id="lat">{{product.localization.latitude}}</div>
+					<div id="long">{{product.localization.lingitude}}</div>			
+				</div>
+			</div>
+		</div>
+		<div style="display: none;">
+			<p id="room_name">{{room_name.name}}</p>
+		</div>
+	</div>
+		<script type="text/javascript">
+			var showNumber = document.querySelector("#message-button2")
+			var falseNumber = document.querySelector("#hidden-number")
+			var hiddenNumber = document.querySelector(".hidden-number2")
+			
+			showNumber.addEventListener('click', function(){
+				hiddenNumber.classList.add('number-active');
+				falseNumber.innerHTML = '';
+				showNumber.classList.add('no-display');
+			});
+
+			var indexValue = 1;
+			function side_slide(e){
+				showImg(indexValue += e)
+			}
+
+			function showImg(e){
+				var i;
+				const img = document.querySelectorAll('#pic-itself')
+				if (e>img.length)
+					{
+						indexValue = 1;
+					}
+				if(e<1)
+					{
+						indexValue = img.length;
+					}
+				for(i=0; i<img.length; i++){
+					img[i].style.display = "none";
+				}
+				img[indexValue-1].style.display = "block";
+			}
+		</script>
+		<script>
+			var latidute = parseFloat(document.querySelector('#lat').textContent);
+			var longitude = parseFloat(document.querySelector('#long').textContent);
+			function initMap(){
+				var location = {
+					lat:latidute, 
+					lng:longitude
+				}
+				var map = new google.maps.Map(document.getElementById('map'),{
+					zoom:6,
+					center:location
+				});
+				var marker = new google.maps.Marker({
+					position:location,
+					map : map
+				})
+			};
+		</script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5-5bf6lw8hUpaPVt6f8xr2StSni1nHk0&callback=initMap"></script>
+		<script type="text/javascript" src="{% static 'js/favAdd.js' %}"></script>
+
+		
+{% endblock content %}
