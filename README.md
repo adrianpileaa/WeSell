@@ -4,5 +4,5 @@ You can add description to these products, pictures, price, provide a location, 
 You also have a chat section where you can discuss about that specified product with the seller. 
 You also have a favourite section, so you can save announcements that you like. 
 This website is related also with Google Maps API, in order to see if the seller is closer to you or not. 
-It was created using technologies such as Django Python Framework, Javascript (also AJAX), HTML anc CSS.
+It was created using technologies such as Django Python Framework, Django Channels(Websockets), Javascript (also AJAX), HTML and CSS.
 ENJOY!!
