@@ -4,9 +4,39 @@ import json
 from django.http import JsonResponse, HttpResponse
 from django.contrib import messages
 from account.models  import *
+import pandas as pd
 
 def home(request):
 	context = {}
+	
+	'''
+	f = open('C:/Users/adran/Desktop/WeSell/src/products/coord.txt', 'r')
+	ll = []
+	for line in f:
+		stripped_line = line.strip()
+		ll.append([stripped_line])
+	l2 = []
+	for x in ll:
+		for i in x:
+			i = i.replace('\t', '')
+			i = i.replace("°", '.')
+			i = i.replace("'", '')
+			i = i.replace("Â", '')
+			l2.append(i.split())
+	l3 = []
+	for j in l2:
+		if len(j) == 4:
+			j[0] = j[0]+ ' ' +j[1]
+			j.remove(j[1])
+		elif len(j) == 5:
+			j[0] = j[0] + ' ' + j[1] + j[2]
+			j.remove(j[1])
+			j.remove(j[2])
+		l3.append(j)
+	print(l3)
+	for city in l3:
+		City.objects.create(name = city[0], latitude = city[1], longitude = city[2])
+	'''
 	products = Product.objects.all()
 	categories = Category.objects.all()
 	counties = City.objects.all()
@@ -282,7 +312,6 @@ def room_view(request, room_name, user_id):
 		context['product'] = product
 		context['user_id'] = user_id
 		context['room_name'] =room_name
-		print(mesaje)
 	return render(request, 'products/room.html', context)
 
 def messages_view(request):

@@ -71,6 +71,7 @@ def account_view(request, profile_id):
 	context = {}
 	account = Profile.objects.get(id = profile_id)
 	products = Product.objects.filter(seller_id=profile_id)
+	products_length = len(products)
 	if request.POST:
 		image = request.FILES.get('image-changing', '')
 		if image:
@@ -79,6 +80,7 @@ def account_view(request, profile_id):
 			return redirect('account:account', profile_id = profile_id)
 	context['account'] = account
 	context['products'] = products
+	context['products_length'] = products_length
 	context['req_id'] = request.user.id
-	print(products)
+	print(products_length)
 	return render(request, 'account/account.html', context)

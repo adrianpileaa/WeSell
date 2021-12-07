@@ -3,6 +3,16 @@
 {% block content %}
 
 	<link rel="stylesheet" type="text/css" href="{% static 'css/account/login.css' %}">
+	<style type="text/css">
+		@media only screen and (max-height: 720px){
+			
+			.login-div{
+				margin-top: 5rem;
+				margin-bottom: 5rem;
+			}
+		}
+		
+	</style>
 	<div class="whole-login">
 		<div class="login-div">
 			<div class="logo-div">
@@ -18,9 +28,9 @@
 				{% csrf_token %}
 				<div class="inputs-div">
 					<label for="username">Username</label>
-					<input id="inputt" type="text" name="username" placeholder="Username..">
+					<input id="inputt" type="text" name="username" placeholder="Username.." required>
 					<label for="password">Password</label>
-					<input id="inputt" type="password" name="password" placeholder="Password..">
+					<input id="inputt" type="password" name="password" placeholder="Password.." required>
 					<button id="login-button" type="submit">Login to your account</button>
 				</div>
 			</form>

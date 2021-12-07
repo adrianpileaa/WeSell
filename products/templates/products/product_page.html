@@ -2,6 +2,14 @@
 {% load static %}
 {% block content %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/products/product_page.css' %}">
+	<style type="text/css">
+		.product-description{
+			height: auto;
+		}
+		#description-itself{
+			white-space: pre-wrap;
+		}
+	</style>
 	<div class="whole-page">
 		<div class="pic-and-description">
 			<div class="product-picture">
@@ -96,7 +104,7 @@
 					</div>	
 					
 					<div id="lat">{{product.localization.latitude}}</div>
-					<div id="long">{{product.localization.lingitude}}</div>			
+					<div id="long">{{product.localization.longitude}}</div>			
 				</div>
 			</div>
 		</div>
@@ -140,6 +148,7 @@
 		<script>
 			var latidute = parseFloat(document.querySelector('#lat').textContent);
 			var longitude = parseFloat(document.querySelector('#long').textContent);
+			console.log(latidute, longitude)
 			function initMap(){
 				var location = {
 					lat:latidute, 

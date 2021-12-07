@@ -18,7 +18,11 @@ class Category(models.Model):
 class City(models.Model):
 	name = models.CharField(max_length = 100, null = False, blank=False)
 	latitude = models.FloatField()
-	lingitude = models.FloatField()
+	longitude = models.FloatField()
+	date_cr = models.DateTimeField(auto_now_add = True)
+
+	class Meta:
+		ordering=('date_cr',)
 
 	def __str__(self):
 		return self.name
