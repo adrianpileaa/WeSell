@@ -7,6 +7,7 @@ from django.core.asgi import get_asgi_application
 from channels.routing import get_default_application
 import products.routing
 
+django_asgi_app = get_asgi_application()
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wesell.settings')
 
 application = ProtocolTypeRouter({
@@ -19,4 +20,3 @@ application = ProtocolTypeRouter({
 })
 
 django.setup()
-application = get_default_application
