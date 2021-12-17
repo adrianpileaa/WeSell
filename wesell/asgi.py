@@ -11,7 +11,7 @@ django_asgi_app = get_asgi_application()
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wesell.settings')
 
 application = ProtocolTypeRouter({
-    "http": django_asgi_app
+    "http": django_asgi_app,
     "websocket": AuthMiddlewareStack(
         URLRouter(
             products.routing.websocket_urlpatterns
