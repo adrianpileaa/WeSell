@@ -32,6 +32,7 @@
 			height: 200px;
 			width: 200px;
 			border-radius: 4px;
+			object-fit: cover;
 		}
 		.title-div{
 			margin-left: 3rem;

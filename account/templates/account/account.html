@@ -1,12 +1,15 @@
 {% extends 'products/main.html' %}
 {% load static %}
 {% block content %}
+
 	<link rel="stylesheet" type="text/css" href="{% static 'css/account/account.css' %}">
 	<div class="container">
 		<div class="half-screen">
 			<div class="fst-div">
 				<img  class="acc-image" src="{{account.profile_picture.url}}">
+				{% if account.id == request.user.id %}
 				<button class="modal-btn" id="ch-image" type="submit">Change Image</button>
+				{% endif %}
 			</div>
 			<div class="informations">
 				<div class="username">

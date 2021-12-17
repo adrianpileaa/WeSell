@@ -25,10 +25,8 @@ SECRET_KEY = 'django-insecure-p3@ynh*^@+14)r+2&gje))qx7e(o^u$c*-d7z75c#!q)%3lnp#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['wesell-crm.herokuapp.com', 'localhost']
 
-
-# Application definition
 
 INSTALLED_APPS = [
     'products',
@@ -135,6 +133,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
@@ -148,4 +147,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'wesell310@gmail.com'
-EMAIL_HOST_PASSWORD = 'mywebsite'
+EMAIL_HOST_PASSWORD = 'mrefyexlkjinmppt'
