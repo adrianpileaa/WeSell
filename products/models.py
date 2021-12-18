@@ -22,7 +22,7 @@ class City(models.Model):
 	date_cr = models.DateTimeField(auto_now_add = True)
 
 	class Meta:
-		ordering=('name',)
+		ordering=('date_cr',)
 
 	def __str__(self):
 		return self.name
