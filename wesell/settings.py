@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p3@ynh*^@+14)r+2&gje))qx7e(o^u$c*-d7z75c#!q)%3lnp#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['wesell-crm.herokuapp.com', 'localhost']
 
