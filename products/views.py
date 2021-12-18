@@ -8,8 +8,7 @@ import pandas as pd
 
 def home(request):
 	context = {}
-	
-	'''
+
 	f = open('C:/Users/adran/Desktop/WeSell/src/products/coord.txt', 'r')
 	ll = []
 	for line in f:
@@ -36,7 +35,6 @@ def home(request):
 	print(l3)
 	for city in l3:
 		City.objects.create(name = city[0], latitude = city[1], longitude = city[2])
-	'''
 	products = Product.objects.all()
 	categories = Category.objects.all()
 	counties = City.objects.all()
