@@ -4,7 +4,7 @@ from .models import *
 # Create your models here.
 
 def category_image_path(self, name):
-	return f'images/category_images/{self.name}{"_image.png"}'
+	return f'static/images/category_images/{self.name}{"_image.png"}'
 
 
 
