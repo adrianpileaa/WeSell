@@ -1,0 +1,167 @@
+*{
+			font-family: 'Roboto', sans-serif;
+		}
+		body{
+			margin: 0;
+			padding: 0;
+			background-color: #F2F4F5;
+		}	
+		.nav{
+			display: flex;
+			background-color:#002F34;
+			height: 60px;
+			width: 100%;
+		}
+		.nav-component{
+			color: #fff;
+		}
+		.left-side{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		#logo{
+			font-family: 'Stick No Bills', sans-serif;
+			color: #24E5DB;
+			margin-left: 4rem;
+			font-size: xx-large;
+			font-weight: bold;
+			text-decoration: none;
+
+		}
+		.right-side{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-left: auto;
+			margin-right: 5rem;
+		}
+		.nav-component{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.nav-text{
+			font-size: larger;
+			margin-left: 0.5rem;
+			user-select: none;
+			color: #fff;
+			text-decoration: none;
+		}
+		.dropdown {
+		  position: relative;
+		  display: inline-block;
+		}
+
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #f1f1f1;
+			width: auto;
+			top: 3rem;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			z-index: 1;
+			margin-left: 1.2rem;
+			border-radius: 3px;
+		}
+		.dropdown-content a {
+			color: black;
+			padding: 12px 16px;
+		  	text-decoration: none;
+		  	display: block;
+		}
+
+		.dropdown-content a:hover {
+			opacity: 0.5;
+		}
+
+		.show{
+			display: block;
+		}
+		.a-tag{
+			background-color: #002F34;
+			color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-right: 0.5rem;
+			margin-left: 0.5rem;
+			height: 55px;
+			text-decoration: none;
+		}
+		.a-tag2{
+			text-decoration: none;
+			color: #fff;
+			margin-left:2rem;
+			margin-right: 2rem;
+		}
+		.a-tag:hover, .a-tag2:hover, .a-tag3:hover{
+			opacity: 0.5;
+			transition-duration: 0.2s;
+		}
+		.a-tag3{
+			text-decoration: none;
+			color: #fff;
+			margin-left:2rem;
+			margin-right: 2rem;
+		}
+		#fav-nr{
+			position: absolute;
+			color: #fff;
+			background-color: red;
+			border-radius: 50%;
+			margin-left: 2.3rem;
+			margin-top: 0;
+			width: 16px;
+			font-weight: bold;
+			display: flex;
+			justify-content: center;
+
+		}
+		
+		.nav-button{
+			color: #002F34;
+			background-color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-left: 0.5rem;
+			font-size: medium;
+			height: 40px;
+			width:auto;
+			border-radius: 4px;
+			font-weight: bold;
+			padding-left: 0.3rem;
+			padding-right: 0.3rem;
+			text-decoration: none;
+		}
+		.nav-button:hover{
+			background-color: #b3b3b3;
+			color: #fff;
+			transition-duration: 0.2s;
+		}
+		.alert{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			color: #000;
+			height: 40px;
+			border-bottom: 1px solid black;
+			font-weight: bold;
+		}
+		.success{
+			background-color: #D2EBD8;
+		}
+		.danger{
+			background-color: #F8D7DA;
+		}
+		
+		@media only screen and (max-width: 768px){
+			.nav-text{
+				display: none;
+			}
+			.dropdown-content{
+				margin: auto;
+			}
+		}
