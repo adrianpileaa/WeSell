@@ -5,9 +5,9 @@ from django.db.models.signals import post_save
 
 
 def profile_picture_path(self, id):
-	return f'images/profile_pictures/{self.id}{"_profile_picture.png"}'
+	return f'profile_pictures/{self.id}{"_profile_picture.png"}'
 def default_picture_path():
-	return f'images/profile_pictures/default.png'
+	return f'profile_pictures/default.png'
 
 
 class Profile(models.Model):
