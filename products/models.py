@@ -4,7 +4,7 @@ from .models import *
 # Create your models here.
 
 def category_image_path(self, name):
-	return f'category_images/{self.name}{"_image.png"}'
+	return f'images/category_images/{self.name}{"_image.png"}'
 
 
 
@@ -49,10 +49,10 @@ class Product(models.Model):
 		return f'{self.id}'
 
 def product_image_path(self,id):
-	return f"product_pictures/{self.product_name.id}_picture.png"
+	return f"images/product_pictures/{self.product_name.id}_picture.png"
 
 def product_default_image():
-	return f"product_pictures/default.jpg"
+	return f"images/product_pictures/default.jpg"
 
 
 class Product_Image(models.Model):
