@@ -4,10 +4,6 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 
-def default_picture_path():
-	return f'images/profile_pictures/default.png'
-
-
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE)
 	profile_picture = models.ImageField(max_length=255, upload_to='images',

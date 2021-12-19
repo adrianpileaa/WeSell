@@ -1,7 +1,6 @@
 from django.db import models
 from account.models import Profile
 from .models import *
-# Create your models here.
 
 
 class Category(models.Model):
@@ -44,9 +43,6 @@ class Product(models.Model):
 	def __str__(self):
 		return f'{self.id}'
 
-
-def product_default_image():
-	return f"images/product_pictures/default.jpg"
 
 
 class Product_Image(models.Model):
