@@ -29,14 +29,15 @@ ALLOWED_HOSTS = ['wesell-crm.herokuapp.com', 'localhost']
 
 
 INSTALLED_APPS = [
-    'products.apps.ProductsConfig',
-    'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'products.apps.ProductsConfig',
+    'account.apps.AccountConfig',
     'channels'
 ]
 
