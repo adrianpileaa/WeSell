@@ -3,14 +3,10 @@ from account.models import Profile
 from .models import *
 # Create your models here.
 
-def category_image_path(self, name):
-	return f'static/images/category_images/{self.name}{"_image.png"}'
-
-
 
 class Category(models.Model):
 	name = models.CharField(max_length=100, null = False, blank=False)
-	picture = models.ImageField(upload_to=category_image_path)
+	picture = models.ImageField(upload_to='images')
 
 	def __str__(self):
 		return self.name
@@ -48,8 +44,6 @@ class Product(models.Model):
 	def __str__(self):
 		return f'{self.id}'
 
-def product_image_path(self,id):
-	return f"images/product_pictures/{self.product_name.id}_picture.png"
 
 def product_default_image():
 	return f"images/product_pictures/default.jpg"
@@ -57,7 +51,7 @@ def product_default_image():
 
 class Product_Image(models.Model):
 	product_name = models.ForeignKey(Product, on_delete = models.CASCADE)
-	image = models.ImageField(upload_to=product_image_path, default = product_default_image)
+	image = models.ImageField(upload_to='images')
 	
 	def __str__(self):
  		return f'{self.product_name.id}'

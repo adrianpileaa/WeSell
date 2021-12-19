@@ -4,16 +4,14 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 
-def profile_picture_path(self, id):
-	return f'images/profile_pictures/{self.id}{"_profile_picture.png"}'
 def default_picture_path():
 	return f'images/profile_pictures/default.png'
 
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE)
-	profile_picture = models.ImageField(max_length=255, upload_to=profile_picture_path,
-		default = default_picture_path)
+	profile_picture = models.ImageField(max_length=255, upload_to='images',
+		default = 'images/default.png')
 	phone_number = models.CharField(max_length = 11, null = False, blank = False)
 	first_name = models.CharField(max_length=30, null=False, blank=False)
 	last_name = models.CharField(max_length=30, null = False, blank = False)
