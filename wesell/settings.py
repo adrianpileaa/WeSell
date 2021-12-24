@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-p3@ynh*^@+14)r+2&gje))qx7e(o^u$c*-d7z75c#!q)%3lnp#
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['wesell-crm.herokuapp.com', 'localhost']
 
@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'channels'
+    'channels',
+    'cloudinary_storage',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -137,7 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
-MEDIA_URL = "/images/"
+MEDIA_URL = "/wesell/"
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
@@ -146,7 +148,13 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME' : 'dvfkb1gto',
+    'API_KEY' : '154697155238732',
+    'API_SECRET' : 'u1MLPNQwoTGlzJXxWVOg4ynLSUc'
+    }
 
 
 # Default primary key field type

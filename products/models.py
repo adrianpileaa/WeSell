@@ -5,7 +5,7 @@ from .models import *
 
 class Category(models.Model):
 	name = models.CharField(max_length=100, null = False, blank=False)
-	picture = models.ImageField(upload_to='images')
+	picture = models.ImageField(upload_to='category_images/')
 
 	def __str__(self):
 		return self.name
@@ -47,7 +47,7 @@ class Product(models.Model):
 
 class Product_Image(models.Model):
 	product_name = models.ForeignKey(Product, on_delete = models.CASCADE)
-	image = models.ImageField(upload_to='images')
+	image = models.ImageField(upload_to='product_images/')
 	
 	def __str__(self):
  		return f'{self.product_name.id}'
