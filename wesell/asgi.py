@@ -1,5 +1,5 @@
 import os
-
+import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wesell.settings')
 django.setup()
 from channels.routing import ProtocolTypeRouter, URLRouter
