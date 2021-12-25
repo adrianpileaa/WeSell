@@ -49,7 +49,7 @@
 		const user_id = JSON.parse(document.getElementById('json-user_id').textContent)
 		
 		const chatSocket = new WebSocket(
-			'ws://'
+			'wss://'
 			+ window.location.host
 			+ '/ws/chat/'
 			+user_id
