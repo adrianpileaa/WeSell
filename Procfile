@@ -1,1 +1,1 @@
-daphne wesell.asgi:application 
+web: daphne wesell.asgi:application
