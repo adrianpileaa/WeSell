@@ -47,9 +47,15 @@
 		scrollToBottom()
 		const roomName = JSON.parse(document.getElementById('json-roomname').textContent)
 		const user_id = JSON.parse(document.getElementById('json-user_id').textContent)
-		var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+		if (window.location.protocol == 'https:') {
+ 		 wsProtocol = 'wss://'
+			} 
+		else 
+			{
+				wsProtocol = 'ws://'
+			}
 		const chatSocket = new WebSocket(
-			'ws://'
+			wsProtocol
 			+ window.location.host
 			+ '/ws/chat/'
 			+user_id
