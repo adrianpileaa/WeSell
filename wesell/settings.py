@@ -74,7 +74,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'wesell.wsgi.application'
-ASGI_APPLICATION = 'wesell.asgi.application'
+ASGI_APPLICATION = 'wesell.routing.application'
 
 CHANNEL_LAYERS = {
    'default' : {

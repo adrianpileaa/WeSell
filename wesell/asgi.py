@@ -1,21 +1,9 @@
-
 import os
-from channels.routing import ProtocolTypeRouter, URLRouter
-from django.core.asgi import get_asgi_application
+import django
+from channels.routing import get_default_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wesell.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tabulator.settings')
 
-django_asgi_app = get_asgi_application()
+django.setup()
 
-from channels.auth import AuthMiddlewareStack
-import products.routing
-
-application = ProtocolTypeRouter({
-    "http": django_asgi_app,
-    "websocket": AuthMiddlewareStack(
-        URLRouter(
-            products.routing.websocket_urlpatterns
-        )
-    ),
-})
-
+application = get_default_application()
