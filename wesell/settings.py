@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-p3@ynh*^@+14)r+2&gje))qx7e(o^u$c*-d7z75c#!q)%3lnp#
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['wesell-crm.herokuapp.com', 'localhost']
 
@@ -80,7 +80,7 @@ CHANNEL_LAYERS = {
    'default' : {
         'BACKEND' : 'channels_redis.core.RedisChannelLayer',
         'CONFIG' : {
-            'hosts' : [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+            'hosts' : [os.environ.get('REDIS_HOST', 'redis://localhost:6379')],
         }
    }  
 }
@@ -92,7 +92,7 @@ DATABASES = {
         'USER' : 'postgres',
         'PASSWORD' : 'banderas231',
         'HOST' : 'localhost',
-        'PORT' : '5432' 
+        'PORT' : '' 
     }
 }
 
