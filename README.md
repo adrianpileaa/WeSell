@@ -1,5 +1,5 @@
 # WeSell 
-Is a website created specially for selling anything you want on the internet. 
+Is a website created specially for selling anything you want on the internet! 
 
 ![Screenshot 2021-12-07 at 16-30-56 WeSell](https://user-images.githubusercontent.com/90518975/145049106-df3c4cb0-4f3f-4873-963b-8d9eb7a52b07.png)
 
